@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskApp - Tarefas</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main-style.css">
+    <link rel="stylesheet" href="css/task-style.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/main-anim.css">
+</head>
+
+<body>
+    <header>
+        <img src="images/icons/arrow_back.svg" alt="Go Back" title="Go Back" onclick="history.back()">
+        <h1>TaskApp</h1>
+        <img src="images/icons/usuary.svg" alt="See Profile">
+    </header>
+    <div class="container">
+        <form class="aside hlSlide appear" action="sendTodo" method="POST">
+            <!--Envia os valores no POST "sendTodo"-->
+
+            <label for="title">
+                <input name="title" id="title" type="text" placeholder="To-Do Title" class="full" required>
+            </label>
+
+            <label for="description"><span class="desc-count">0/300</span>
+                <textarea name="description" id="description" onkeyup="setDescLenght()" maxlength="300" class="full"
+                    placeholder="To-Do Description" required></textarea>
+            </label>
+
+            <div class="horizontal">
+                <input name="date" id="date" type="date" required>
+                <input name="hour" id="hour" type="time" required>
+            </div>
+
+            <button type="button" id="continue" class="full" onclick="createTask()">Continue</button>
+
+
+            <div class="notify-popup appear">
+                <div class="container-popup">
+                    <div class="titles">
+                        <h1>Notification</h1>
+                        <h2>Enter your email and phone</h2>
+                    </div>
+
+                    <label for="email">
+                        <h2>email:</h2>
+                        <input name="email" id="email" type="email" class="half" placeholder="Enter your email"
+                            required>
+                    </label>
+                    <label for="phone">
+                        <h2>phone:</h2>
+                        <input name="phone" id="phone" type="phone" class="half" placeholder="Enter your phone"
+                            required>
+                    </label>
+
+                    <button type="submit" id="confirm">Create Task!</button>
+                    <img src="images/icons/close.svg" alt="Close" onclick="ExitNotify()">
+                </div>
+            </div>
+
+            {{!-- <button type="submit" id="confirm" class="full">Continue</button> --}}
+        </form>
+        <div class="edit-popup appear">
+            <div class="container-popup">
+                <input type="hidden" id="edt-index">
+                <div class="titles">
+                    <h1>Edit Your Task</h1>
+                    <h2>Edit your task right now!</h2>
+                </div>
+
+                <label for="edt-title">
+                    <h2>Title:</h2>
+                    <input name="edt-title" id="edt-title" type="text" class="full" placeholder="Enter Task Title"
+                        required>
+                </label>
+
+                <label for="edt-desc"><span class="desc-count">0/300</span>
+                    <h2>Description:</h2>
+                    <textarea name="edt-desc" id="edt-desc" type="text" class="full" onkeyup="setDescLenght(true)"
+                        placeholder="Enter Task Description" maxlength="300" required></textarea>
+                </label>
+
+                <div class="horizontal">
+                    <label for="edt-date">
+                        <h2>Date:</h2>
+                        <input name="edt-date" id="edt-date" type="date" required>
+                    </label>
+
+                    <label for="edt-hour">
+                        <h2>Hour:</h2>
+                        <input name="edt-hour" id="edt-hour" type="time" required>
+                    </label>
+                </div>
+
+                <button type="button" id="send-edited-task" onclick="sendEditedTask()">Update Task!</button>
+                <img src="images/icons/close.svg" alt="Close" onclick="ExitEdit()">
+            </div>
+        </div>
+
+        <div class="list-todo hrSlide appear">
+
+            <div class="task">
+                <aside>
+                    <div class="checkbox active" onclick="toogleTask(0)">
+                        <!-- | Coloque o index | Retire/coloque o 'active' da classe para desativar-->
+                        <img src="images/icons/mark-active.svg" alt="Task Finished" ondragstart="return false">
+                    </div>
+                </aside>
+                <div class="task-info">
+                    <h1>Task Example</h1>
+                    <h2>
+                        <span class="date-task">Date: 20/12/2020</span>
+                        <span class="hour-task">Hour: 05:32</span>
+                    </h2>
+                    <div class="description-text">
+                        <p>Aqui fica uma descrição bem legal, olha só: Lorem ipsum dolor sit amet consectetur
+                            adipisicing elit. Explicabo dolores culpa cos quis quasi illo sequi harum,
+                            corporis totam nulla dignissimos doloribus! Laborum ut non nihil vel distinctio iusto?</p>
+                    </div>
+                    <a href="#">- Information</a>
+                    <a href="#">+ Add Information</a>
+                    <div class="task-config">
+                        <img src="images/icons/config-hamburg.svg" alt="Config" onclick="toogleMenu(0)">
+                        <!-- Adicione o index-->
+                        <div class="menu">
+                            <a href="#">Remove Task</a> <!-- A Fazer: Decidir o comportamento -->
+                            <a href="#" onclick="editPopup(0)">Edit Task</a><!-- Adicione o index-->
+                            <a href="#" onclick="toogleTask(0)">Toogle Task</a><!-- Adicione o index-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="task">
+                <aside>
+                    <div class="checkbox" onclick="toogleTask(1)">
+                        <!-- | Coloque o index | -->
+                        <img src="images/icons/mark-active.svg" alt="Task Finished" ondragstart="return false">
+                    </div>
+                </aside>
+                <div class="task-info">
+                    <h1>Task Example</h1>
+                    <h2>
+                        <span class="date-task">Date: 04/08/2021</span>
+                        <span class="hour-task">Hour: 20:50</span>
+                    </h2>
+                    <div class="description-text">
+                        <p>A descrição daqui não é tão legal assim...</p>
+                    </div>
+                    <a href="#">- Information</a>
+                    <a href="#">+ Add Information</a>
+                    <div class="task-config">
+                        <img src="images/icons/config-hamburg.svg" alt="Config" onclick="toogleMenu(1)">
+                        <!-- Adicione o index-->
+                        <div class="menu active">
+                            <a href="#">Remove Task</a> <!-- A Fazer: Decidir o comportamento -->
+                            <a href="#" onclick="editPopup(1)">Edit Task</a>
+                            <a href="#" onclick="toogleTask(1)">Toogle Task</a><!-- Adicione o index-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="scripts/functions.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>

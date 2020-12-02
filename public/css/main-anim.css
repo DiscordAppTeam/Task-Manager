@@ -1,0 +1,39 @@
+
+.appear{
+    animation: appear 200ms linear;
+}
+
+.hrSlide{
+    animation: horizontalRight 500ms linear;
+}
+.hlSlide{
+    animation: horizontalLeft 500ms linear;
+}
+
+
+@keyframes horizontalRight{
+    0%{
+        transform: translateX(300%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+
+@keyframes horizontalLeft{
+    0%{
+        transform: translateX(-300%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+
+@keyframes appear{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

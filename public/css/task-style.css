@@ -1,0 +1,113 @@
+
+.task{
+    display: flex;
+    width: 100%;
+
+    font-family: "Poppins", sans-serif;
+    background: #fff;
+    font-weight: 600;
+    min-height: 120px;
+    margin-top: 35px;
+    box-shadow: 5px 5px 10px 2px #0002;
+}
+.task:first-child{
+    margin-top: 0px;
+}
+
+.task aside{
+    width: 50px;
+}
+.task aside .checkbox{
+    position: relative;
+    display: block;
+    
+    border: 2px solid #000;
+    width: 15px;
+    height: 15px;
+    margin: 18px auto;
+    cursor: pointer;
+}
+.task aside .checkbox img{
+    position: absolute;
+    opacity: 0;
+    width: 22px;
+    top: -8px;
+    left: -4px;
+}
+.task aside .checkbox.active{
+    background: #0f0;
+}
+.task aside .checkbox.active img{
+    opacity: 1;
+}
+
+
+.task-info{
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 5px 0;
+}
+
+.task-info h1{
+    font-size: 20pt;
+    font-weight: 600;
+}
+.task-info h2{
+    color: #98c1d9;
+    font-size: 10pt;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.task-info h2 span.date-task{
+    margin-right: 18px;
+}
+.task-info .description-text{
+    font-size: 10pt;
+    margin-bottom: 15px;
+}
+.task-info a{
+    display: block;
+    font-size: 11pt;
+    width: fit-content;
+    color: #000;
+    text-decoration: none;
+}
+
+
+
+.task-config{
+    position: absolute;
+    height: 100%;
+    top: 0px;
+    right: -15px;
+}
+.task-config img{
+    position: absolute;
+    object-fit: fill;
+    width: 20px;
+    height: 20px;
+    top: 20px;
+    right: 40px;
+    z-index: 20;
+    cursor: pointer;
+}
+.task-config .menu{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 100%;
+    padding: 20px;
+
+    opacity: 0;
+    transform: translateX(100%);
+    background: #d3e5e5dd;
+    transition: 500ms;
+}
+.task-config .menu.active{
+    transform: translateY(0);
+    opacity: 1;
+}
+.task-config .menu a{
+    margin-top: 15px;
+}

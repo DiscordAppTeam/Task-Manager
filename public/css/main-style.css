@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: #d1dcdc;
+    height: 100vh;
+}
+
+
+.container{
+    display: flex;
+    align-items: top;
+    justify-content: space-evenly;
+
+    height: 90%;
+    min-width: 1100px; /* impede de ficar menor */
+    padding: 25px;
+    transition: 500ms;
+    overflow: hidden;
+}
+.aside{
+    display: block;
+    flex-direction: column;
+    background: #f5fbfc;
+    justify-content: center;
+
+    width: 35%;
+    max-width: 600px;
+    height: min-content;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 25px;
+}
+.list-todo{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+
+    background: #f5fbfc;
+    width: 45%;
+    height: min-content;
+
+    border-radius: 8px;
+    min-height: 200px;
+    max-width: 800px;
+    padding: 35px;
+    margin: 25px;
+}
+
+
+/* Edit Popup */
+.edit-popup{
+    position: absolute;
+    display: none; /* Some com o display, Default: Flex*/
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+
+    top: 0;
+    left: 0;
+    width: 100vw; /* Redimensionar o POPUP */
+    height: 100vh;
+    background: #0005;
+    z-index: 55;
+}
+.edit-popup .container-popup h2{
+    top: -10px;
+}
+.container-popup .horizontal label input{
+    width: 300px;
+}
+.edit-popup textarea{
+    margin-top: 10px;
+}
+.edit-popup span{
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+/* End Edit Popup */

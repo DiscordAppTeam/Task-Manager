@@ -1,0 +1,150 @@
+input,
+textarea,
+button{
+    border: 1px solid #53a6a9;
+
+    color: #4285ac;
+    font-family: "Poppins", sans-serif;
+    font-size: 12pt;
+    font-weight: 400;
+
+    border-radius: 4px;
+    background: #d3e5e6;
+    padding: 10px;
+    height: 40px;
+    display: block;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    cursor: text;
+}
+input::placeholder,
+textarea::placeholder{
+    color: #4285ac;
+    font-size: 12pt;
+}
+input:valid,
+textarea:valid{
+    background: #e8f7f7;
+}
+input#date{
+    font-size: clamp(8pt,1vw,12pt); /* Precisa variar o tamanho */
+}
+
+textarea{
+    position: relative;
+    resize: none; /* remove o redimensionamento */
+    margin-top: 20px;
+    font-size: 10pt;
+    height: 80px;
+} 
+.full{
+    width: 100%;
+}
+.half{
+    width: 50%;
+}
+.horizontal{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+.horizontal input{
+    width: 45%;
+}
+
+
+label{
+    position: relative;
+    display: block;
+    height: min-content;
+}
+
+.container-popup span,
+.aside span{
+    font-size: 10pt;
+    color: #0005;
+    position: absolute;
+    bottom: 6px;
+    right: 18px;
+    z-index: 5;
+}
+
+
+button{
+    padding: 0;
+    background: #00f190;
+    
+    color: #fff;
+    font-size: 15pt;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+
+/* POPUP */
+
+
+
+.notify-popup{
+    position: absolute;
+    display: none; /* Some com o display, Default: Flex*/
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+
+    top: 0;
+    left: 0;
+    width: 100vw; /* Redimensionar o POPUP */
+    height: 100vh;
+    background: #0005;
+    z-index: 55;
+}
+.container-popup{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+
+    background: #f5fbfc;
+    border-radius: 10px;
+    padding: 50px;
+    width: 850px;
+    height: 550px;
+}
+.container-popup .titles h1{
+    display: block;
+    font-weight: 800;
+}
+.container-popup .titles h2{
+    color: #98c1d9;
+    font-weight: 600;
+    font-size: 15pt;
+    margin-top: 20px;
+}
+.container-popup img{
+    position: absolute;
+    cursor: pointer;
+    top: 50px;
+    right: 50px;
+}
+.aside label h2,
+.container-popup label h2{
+    color: #98c1d9;
+    position: absolute;
+
+    top: -15px;
+    font-size: 12pt;
+    font-weight: 400;
+}
+
+.aside #confirm{
+    display: Block;
+    margin: 0 auto;
+    width: 200px;
+}
+
+
+/* Fim POPUP */
