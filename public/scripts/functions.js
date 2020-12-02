@@ -85,8 +85,8 @@ function ExitEdit(){
 
 
 function toogleTask(index){
-    const tasks = document.querySelectorAll(".task");
-    const checkbox = tasks[index].querySelector(".checkbox");
+    const tasks = document.getElementById(index);
+    const checkbox = tasks.querySelector(".checkbox");
     var todoStatus =  !(checkbox.getAttribute("class") == "checkbox active"); /* bool, se for verdadeiro, significa que a tarefa está concluida!*/
     
     checkbox.setAttribute("class", (todoStatus == true) ? "checkbox active" : "checkbox");
@@ -98,10 +98,10 @@ actualTask = {};
 /** Pega os valores da tarefa clicada e envia para o popup seus valores, para uma melhor edição !! */
 function editPopup(index){
     const olderTask = {
-        title: document.querySelectorAll(".task-info h1")[index],
-        desc: document.querySelectorAll(".description-text p")[index],
-        date: document.querySelectorAll(".task-info .date-task")[index],
-        hour: document.querySelectorAll(".task-info .hour-task")[index]
+        title: document.getElementById(index).querySelector(".task-info h1"),
+        desc: document.getElementById(index).querySelector(".description-text p"),
+        date: document.getElementById(index).querySelector(".task-info .date-task"),
+        hour: document.getElementById(index).querySelector(".task-info .hour-task")
     }
     const editFields = getEditFields();
 
@@ -138,8 +138,7 @@ function sendEditedTask(){
 }
 
 function toogleMenu(index){
-    const menus = document.querySelectorAll(".task-config");
-    const menu = menus[index].querySelector(".menu");
+    const menu = document.getElementById(index).querySelector(".menu");
     var menuStatus =  menu.getAttribute("class") == "menu active"; /* bool, se for verdadeiro, significa que o menu está aberto!*/
     
     menuStatus = !menuStatus;

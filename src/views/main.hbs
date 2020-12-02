@@ -23,6 +23,8 @@
     </header>
     <div class="container">
         <form class="aside hlSlide appear" action="sendTodo" method="POST">
+
+
             <!--Envia os valores no POST "sendTodo"-->
 
             <label for="title">
@@ -105,70 +107,38 @@
         </div>
 
         <div class="list-todo hrSlide appear">
-
-            <div class="task">
-                <aside>
-                    <div class="checkbox active" onclick="toogleTask(0)">
-                        <!-- | Coloque o index | Retire/coloque o 'active' da classe para desativar-->
-                        <img src="images/icons/mark-active.svg" alt="Task Finished" ondragstart="return false">
-                    </div>
-                </aside>
-                <div class="task-info">
-                    <h1>Task Example</h1>
-                    <h2>
-                        <span class="date-task">Date: 20/12/2020</span>
-                        <span class="hour-task">Hour: 05:32</span>
-                    </h2>
-                    <div class="description-text">
-                        <p>Aqui fica uma descrição bem legal, olha só: Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit. Explicabo dolores culpa cos quis quasi illo sequi harum,
-                            corporis totam nulla dignissimos doloribus! Laborum ut non nihil vel distinctio iusto?</p>
-                    </div>
-                    <a href="#">- Information</a>
-                    <a href="#">+ Add Information</a>
-                    <div class="task-config">
-                        <img src="images/icons/config-hamburg.svg" alt="Config" onclick="toogleMenu(0)">
-                        <!-- Adicione o index-->
-                        <div class="menu">
-                            <a href="#">Remove Task</a> <!-- A Fazer: Decidir o comportamento -->
-                            <a href="#" onclick="editPopup(0)">Edit Task</a><!-- Adicione o index-->
-                            <a href="#" onclick="toogleTask(0)">Toogle Task</a><!-- Adicione o index-->
+            {{#each tasks}}
+                <div class="task" id="{{id}}">
+                    <aside>
+                        <div class="checkbox active" onclick="toogleTask({{id}})">
+                            <!-- | Coloque o index | Retire/coloque o 'active' da classe para desativar-->
+                            <img src="images/icons/mark-active.svg" alt="Task Finished" ondragstart="return false">
                         </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="task">
-                <aside>
-                    <div class="checkbox" onclick="toogleTask(1)">
-                        <!-- | Coloque o index | -->
-                        <img src="images/icons/mark-active.svg" alt="Task Finished" ondragstart="return false">
-                    </div>
-                </aside>
-                <div class="task-info">
-                    <h1>Task Example</h1>
-                    <h2>
-                        <span class="date-task">Date: 04/08/2021</span>
-                        <span class="hour-task">Hour: 20:50</span>
-                    </h2>
-                    <div class="description-text">
-                        <p>A descrição daqui não é tão legal assim...</p>
-                    </div>
-                    <a href="#">- Information</a>
-                    <a href="#">+ Add Information</a>
-                    <div class="task-config">
-                        <img src="images/icons/config-hamburg.svg" alt="Config" onclick="toogleMenu(1)">
-                        <!-- Adicione o index-->
-                        <div class="menu active">
-                            <a href="#">Remove Task</a> <!-- A Fazer: Decidir o comportamento -->
-                            <a href="#" onclick="editPopup(1)">Edit Task</a>
-                            <a href="#" onclick="toogleTask(1)">Toogle Task</a><!-- Adicione o index-->
+                    </aside>
+                    <div class="task-info">
+                        <h1>{{title}}</h1>
+                        <h2>
+                            <span class="date-task">Date: {{data}}</span>
+                            <span class="hour-task">Hour: {{hour}}</span>
+                        </h2>
+                        <div class="description-text">
+                            <p>{{description}}</p>
                         </div>
-                    </div>
+                        <a href="#">- Information</a>
+                        <a href="#">+ Add Information</a>
+                        <div class="task-config">
+                            <img src="images/icons/config-hamburg.svg" alt="Config" onclick="toogleMenu({{id}})">
+                            <!-- Adicione o index-->
+                            <div class="menu">
+                                <a href="remove/{{id}}">Remove Task</a> <!-- A Fazer: Decidir o comportamento -->
+                                <a href="#" onclick="editPopup({{id}})">Edit Task</a><!-- Adicione o index-->
+                                <a href="#" onclick="toogleTask({{id}})">Toogle Task</a><!-- Adicione o index-->
+                            </div>
+                        </div>
 
-                </div>
-            </div>
+                    </div>
+                </div>  
+            {{/each}}  
 
         </div>
     </div>

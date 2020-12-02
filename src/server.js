@@ -1,20 +1,53 @@
-const express = require('express');
-const path = require('path');
-const pages = require('./pages')
-const server = express()
+const express = require("express");
+const path = require("path");
+const pages = require("./pages");
+const server = express();
+const bodyParser = require("body-parser");
 
-
+const Task = require("../public/models/Task");
 
 server
+  .use(bodyParser.urlencoded({ extended: false }))
+  .use(bodyParser.json())
+  .use(express.static("public"))
 
-.use(express.static('public'))
+  .set("views", path.join(__dirname, "views"))
+  .set("view engine", "hbs")
 
-.set('views', path.join(__dirname, "views"))
-.set('view engine', 'hbs')
+  .get("/", pages.index)
 
-.get('/', pages.index)
-.get('/main', pages.main)
+  .get("/main", (req, res) => {
+      Task.findAll().then((tasks) => {
+          return res.render('main', {tasks})
+      })
+  });
 
+server.post("/sendTodo", (req, res) => {
+  Task.create({
+    title: req.body.title,
+    description: req.body.description,
+    data: req.body.date,
+    hour: req.body.hour,
+    email: req.body.email,
+    phone: req.body.phone,
+  })
+    .then(() => {
+      return res.redirect("/main");
+    })
+    .catch((error) => {
+      console.log("Erro: " + error);
+    });
+});
 
+server.get('/remove/:id', (req, res) => {
+    Task.destroy({
+        where: {'id' : req.params.id}
+    }).then(() => {
+      return res.redirect("/main");
+    })
+    .catch((error) => {
+        console.log("Erro: " + error);
+      });
+})
 
-server.listen(5800)
+server.listen(5800);
