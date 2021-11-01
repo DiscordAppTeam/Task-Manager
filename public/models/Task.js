@@ -1,7 +1,7 @@
-const { Sequelize } = require('./database')
+const Sequelize = require('sequelize');
 const db = require('./database')
 
-const Task = db.sequelize.define('tasks', {
+const Task = db.define('tasks', {
     title: {
         type: Sequelize.STRING(50)
     },
@@ -31,9 +31,9 @@ const Task = db.sequelize.define('tasks', {
     }
 
 })
+// Task.sync({force: true}) 
 
-module.exports = Task
+module.exports = Task;
 
-/*  Task.sync({force: true}) */
 
 

@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const pages = require("./pages");
+require('dotenv/config');
 const server = express();
 const bodyParser = require("body-parser");
 
@@ -50,4 +51,6 @@ server.get('/remove/:id', (req, res) => {
       });
 })
 
-server.listen(5800);
+const port =  process.env.PORT
+server.listen(port);
+console.log("Servidor conectado na porta: " + port)
