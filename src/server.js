@@ -15,7 +15,9 @@ server
   .set("views", path.join(__dirname, "views"))
   .set("view engine", "hbs")
 
-  .get("/", pages.index)
+  .get("/", (req,res) => { 
+    return res.redirect("/main")
+  })
 
   .get("/main", (req, res) => {
       Task.findAll().then((tasks) => {
